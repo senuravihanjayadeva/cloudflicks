@@ -1,15 +1,15 @@
-import Features from "../components/features-layout";
-import VideoPlayer from "../components/video-player";
+"use client";
+import Features from "../../components/features-layout";
+import VideoPlayer from "../../components/video-player";
 import React, { useRef } from "react";
 
-export default function Home() {
+export default function Setting() {
   const playerRef = useRef(null);
 
   const videoJsOptions = {
     autoplay: true,
     controls: true,
-    responsive: true,
-    language: "pt", // Set the language to Spanish
+    settings: true,
     playbackRates: [0.5, 1, 1.5, 2, 2.5, 3],
     controlBar: {
       skipButtons: {
@@ -43,7 +43,7 @@ export default function Home() {
   return (
     <div style={{ padding: "5% 10%" }}>
       <Features>
-      <VideoPlayer options={videoJsOptions} onReady={handlePlayerReady} />
+        <VideoPlayer options={videoJsOptions} onReady={handlePlayerReady} />
       </Features>
     </div>
   );

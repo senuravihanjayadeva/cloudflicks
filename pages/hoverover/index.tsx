@@ -1,15 +1,44 @@
-import Features from "../components/features-layout";
-import VideoPlayer from "../components/video-player";
+"use client";
+
+import Features from "../../components/features-layout";
+import VideoPlayer from "../../components/video-player";
 import React, { useRef } from "react";
 
-export default function Home() {
+export default function HoverOver() {
   const playerRef = useRef(null);
+
+  const hoverTimestamps = [
+    {
+      px: "7",
+      py: "30",
+      pw: "45",
+      ph: "55",
+      cx: "20",
+      cy: "50",
+      cw: "20",
+      ch: "auto",
+      starttime: "3",
+      endtime: "15",
+      text: "This is test 1",
+    },
+    {
+      px: "48",
+      py: "40",
+      pw: "45",
+      ph: "55",
+      cx: "60",
+      cy: "50",
+      cw: "20",
+      ch: "auto",
+      starttime: "3",
+      endtime: "15",
+      text: "This is test 2",
+    },
+  ];
 
   const videoJsOptions = {
     autoplay: true,
     controls: true,
-    responsive: true,
-    language: "pt", // Set the language to Spanish
     playbackRates: [0.5, 1, 1.5, 2, 2.5, 3],
     controlBar: {
       skipButtons: {
@@ -25,6 +54,11 @@ export default function Home() {
         quality: "360p",
       },
     ],
+    plugins: {
+      customHoverOverParser: {
+        hoverTimestamps: hoverTimestamps,
+      },
+    },
   };
 
   const handlePlayerReady = (player: any) => {
@@ -43,7 +77,7 @@ export default function Home() {
   return (
     <div style={{ padding: "5% 10%" }}>
       <Features>
-      <VideoPlayer options={videoJsOptions} onReady={handlePlayerReady} />
+        <VideoPlayer options={videoJsOptions} onReady={handlePlayerReady} />
       </Features>
     </div>
   );

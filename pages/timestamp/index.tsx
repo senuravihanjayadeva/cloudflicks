@@ -1,15 +1,33 @@
-import Features from "../components/features-layout";
-import VideoPlayer from "../components/video-player";
+"use client";
+import Features from "../../components/features-layout";
+import VideoPlayer from "../../components/video-player";
 import React, { useRef } from "react";
 
-export default function Home() {
+export default function Annotation() {
   const playerRef = useRef(null);
+
+  // Define an array of pause time ranges (in seconds)
+  const timestamps = [
+    {
+      starttime: 10,
+    },
+    {
+      starttime: 30,
+    },
+    {
+      starttime: 70,
+    },
+    {
+      starttime: 100,
+    },
+    {
+      starttime: 120,
+    },
+  ];
 
   const videoJsOptions = {
     autoplay: true,
     controls: true,
-    responsive: true,
-    language: "pt", // Set the language to Spanish
     playbackRates: [0.5, 1, 1.5, 2, 2.5, 3],
     controlBar: {
       skipButtons: {
@@ -25,6 +43,11 @@ export default function Home() {
         quality: "360p",
       },
     ],
+    plugins: {
+      customTimestamp: {
+        timestamps: timestamps,
+      },
+    },
   };
 
   const handlePlayerReady = (player: any) => {
@@ -43,7 +66,7 @@ export default function Home() {
   return (
     <div style={{ padding: "5% 10%" }}>
       <Features>
-      <VideoPlayer options={videoJsOptions} onReady={handlePlayerReady} />
+        <VideoPlayer options={videoJsOptions} onReady={handlePlayerReady} />
       </Features>
     </div>
   );

@@ -1,15 +1,14 @@
-import Features from "../components/features-layout";
-import VideoPlayer from "../components/video-player";
+"use client";
+import Features from "../../components/features-layout";
+import VideoPlayer from "../../components/video-player";
 import React, { useRef } from "react";
 
-export default function Home() {
+export default function AudioDescribe() {
   const playerRef = useRef(null);
 
   const videoJsOptions = {
     autoplay: true,
     controls: true,
-    responsive: true,
-    language: "pt", // Set the language to Spanish
     playbackRates: [0.5, 1, 1.5, 2, 2.5, 3],
     controlBar: {
       skipButtons: {
@@ -25,6 +24,18 @@ export default function Home() {
         quality: "360p",
       },
     ],
+    plugins: {
+      customCaption: {
+        captions: [
+          {
+            src: "http://localhost:3000/example.en.vtt",
+            kind: "descriptions",
+            srclang: "en",
+            label: "Audio Description",
+          },
+        ],
+      },
+    },
   };
 
   const handlePlayerReady = (player: any) => {
@@ -43,7 +54,7 @@ export default function Home() {
   return (
     <div style={{ padding: "5% 10%" }}>
       <Features>
-      <VideoPlayer options={videoJsOptions} onReady={handlePlayerReady} />
+        <VideoPlayer options={videoJsOptions} onReady={handlePlayerReady} />
       </Features>
     </div>
   );

@@ -1,15 +1,15 @@
-import Features from "../components/features-layout";
-import VideoPlayer from "../components/video-player";
+"use client";
+import Features from "../../components/features-layout";
+import VideoPlayer from "../../components/video-player";
 import React, { useRef } from "react";
 
-export default function Home() {
+export default function ScreenNavigation() {
   const playerRef = useRef(null);
 
   const videoJsOptions = {
     autoplay: true,
     controls: true,
     responsive: true,
-    language: "pt", // Set the language to Spanish
     playbackRates: [0.5, 1, 1.5, 2, 2.5, 3],
     controlBar: {
       skipButtons: {
@@ -25,6 +25,19 @@ export default function Home() {
         quality: "360p",
       },
     ],
+    plugins: {
+      customInScreenNavigation: {
+        chapters: [
+          { label: "Chapter 1", time: "0" },
+          { label: "Chapter 2", time: "20" },
+          { label: "Chapter 3", time: "40" },
+          { label: "Chapter 4", time: "60" },
+          { label: "Chapter 5", time: "90" },
+          { label: "Chapter 6", time: "110" },
+          { label: "Chapter 7", time: "140" },
+        ],
+      },
+    },
   };
 
   const handlePlayerReady = (player: any) => {
@@ -43,7 +56,7 @@ export default function Home() {
   return (
     <div style={{ padding: "5% 10%" }}>
       <Features>
-      <VideoPlayer options={videoJsOptions} onReady={handlePlayerReady} />
+        <VideoPlayer options={videoJsOptions} onReady={handlePlayerReady} />
       </Features>
     </div>
   );

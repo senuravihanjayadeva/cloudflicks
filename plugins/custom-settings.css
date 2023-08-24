@@ -1,0 +1,34 @@
+.custom-settings-popup-panel{
+  /* display: none; */
+  position: absolute;
+  bottom: 8%;
+  right: 1%;
+  text-align: left;
+  max-height: 50%;
+  max-width: 70%;
+  overflow: auto;
+  padding: 1%;
+  background-color: #000000;
+}
+
+.custom-setting-item-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 5%;
+}
+
+.custom-setting-item-col{
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  font-size: small;
+}
+
+.settings-button .vjs-icon-cog {
+  font-size: large; /* Adjust the font size to your preference */
+}
+
+.settings-button{
+  position: absolute !important;
+  right: 1%;
+}
